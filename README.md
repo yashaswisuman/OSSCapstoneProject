@@ -73,6 +73,61 @@ Personal opinion and recommendation. Reflects on what studying Git revealed abou
 
 ---
 
+### Setup & How to Run
+
+> **Requirements:** A Linux system (Ubuntu/Debian recommended) or WSL on Windows.
+
+**Step 1 — Clone the repository**
+```bash
+git clone https://github.com/YOUR_USERNAME/oss-capstone-project.git
+cd oss-capstone-project
+```
+
+**Step 2 — Give execute permissions to all scripts**
+```bash
+chmod +x scripts/*.sh
+```
+
+**Step 3 — Run each script**
+
+```bash
+# Script 1: System Identity Report
+./scripts/script1_system_identity.sh
+
+# Script 2: FOSS Package Inspector
+./scripts/script2_package_inspector.sh
+
+# Script 3: Disk and Permission Auditor
+./scripts/script3_disk_auditor.sh
+
+# Script 4: Log File Analyzer (pass a log file + keyword)
+./scripts/script4_log_analyzer.sh /var/log/syslog error
+
+# Script 5: Open Source Manifesto Generator (interactive)
+./scripts/script5_manifesto_generator.sh
+```
+
+---
+
+### Script Details
+
+#### Script 1 — System Identity Report
+Displays a formatted welcome screen with kernel version, username, home directory, uptime, date/time, and Linux distribution name. Reads distribution info from `/etc/os-release`.
+
+#### Script 2 — FOSS Package Inspector
+Detects whether the system uses RPM or APT, checks if `git` is installed, and prints relevant package info. Uses a `case` statement to print a philosophy note about each FOSS package.
+
+#### Script 3 — Disk and Permission Auditor
+Iterates over an array of important Linux directories using a `for` loop. For each one, it prints permissions, owner, group (using `awk`), and disk size (using `du`). Also checks for Git's config file and core directory.
+
+#### Script 4 — Log File Analyzer
+Takes a log file path and search keyword as command-line arguments (`$1`, `$2`). Reads the file line by line using `while IFS= read -r`, counts matches with `grep`, and prints the last 5 matching lines. Includes retry logic if the file doesn't exist yet.
+
+#### Script 5 — Manifesto Generator
+Prompts the user with 3 questions using `read -p`, builds a paragraph from their answers, and saves it to a `.txt` file. Demonstrates `>` (overwrite) and `>>` (append) file operators.
+
+---
+
 ## Tool Studied
 
 | Property | Details |
@@ -92,10 +147,14 @@ Personal opinion and recommendation. Reflects on what studying Git revealed abou
 
 ```
 oss-capstone-project/
- ┣ README.md          ← You are here
- ┗ Git_OSS_Report.md  ← Full academic report
+ ┣ README.md
+ ┣ Git_OSS_Report.md
+ ┣ script1_system_identity.sh
+ ┣ script2_package_inspector.sh
+ ┣ script3_disk_auditor.sh
+ ┣ script4_log_analyzer.sh
+ ┗ script5_manifesto_generator.sh
 ```
-
 ---
 
 ## How to View the Report
